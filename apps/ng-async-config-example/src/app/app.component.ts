@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NxWelcomeComponent } from './nx-welcome.component';
+import { ConfigService } from '@jontze/ng-async-config';
 
 @Component({
   standalone: true,
@@ -9,6 +10,13 @@ import { NxWelcomeComponent } from './nx-welcome.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'ng-async-config';
+
+  private readonly configService = inject(ConfigService);
+
+  ngOnInit(): void {
+    console.debug('ConfigService:', this.configService.getConfig());
+    console.debug('ConfigService:', this.configService.getConfig('features'));
+  }
 }
