@@ -1,11 +1,17 @@
 import { TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { provideTestingConfig } from '@jontze/ng-async-config';
+import { NxWelcomeComponent } from './nx-welcome.component';
+import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      providers: [
+        provideTestingConfig({ environment: 'test' }, [
+          { name: 'features', content: { feature1: true } },
+        ]),
+      ],
       imports: [AppComponent, NxWelcomeComponent, RouterTestingModule],
     }).compileComponents();
   });
