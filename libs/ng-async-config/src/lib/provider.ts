@@ -12,3 +12,23 @@ export const provideConfig = (): EnvironmentProviders => {
     ConfigService,
   ]);
 };
+
+export const provideTestingConfig = (
+  defaultConfig?: unknown,
+  customConfigs?: { name: string; content: unknown }[]
+): EnvironmentProviders => {
+  const testingConfigMap = (customConfigs ?? []).reduce(
+    (configMap, { name, content }) => {
+      configMap.set(name, content);
+      return configMap;
+    },
+    new Map().set('default', defaultConfig ?? { environment: 'test' })
+  );
+  return makeEnvironmentProviders([
+    {
+      provide: REMOTE_CONFIG_MAP,
+      useValue: testingConfigMap,
+    },
+    ConfigService,
+  ]);
+};
