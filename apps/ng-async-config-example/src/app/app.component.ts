@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NxWelcomeComponent } from './nx-welcome.component';
-import { ConfigService } from '@jontze/ng-async-config';
+import { ConfigService } from '@jontze/ng-remote-config';
 
 @Component({
   standalone: true,

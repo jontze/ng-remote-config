@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@jontze/ng-async-config": ["libs/ng-async-config/src/index.ts"]
+      "@jontze/ng-remote-config": ["libs/ng-remote-config/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

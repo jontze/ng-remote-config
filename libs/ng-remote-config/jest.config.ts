@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'ng-async-config',
+  displayName: 'ng-remote-config',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../coverage/libs/ng-async-config',
+  coverageDirectory: '../../coverage/libs/ng-remote-config',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

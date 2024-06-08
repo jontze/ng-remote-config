@@ -1,7 +1,7 @@
 {
-  "name": "ng-async-config",
+  "name": "ng-remote-config",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/ng-async-config/src",
+  "sourceRoot": "libs/ng-remote-config/src",
   "prefix": "lib",
   "projectType": "library",
   "tags": [],
@@ -10,14 +10,14 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "libs/ng-async-config/ng-package.json"
+        "project": "libs/ng-remote-config/ng-package.json"
       },
       "configurations": {
         "production": {
-          "tsConfig": "libs/ng-async-config/tsconfig.lib.prod.json"
+          "tsConfig": "libs/ng-remote-config/tsconfig.lib.prod.json"
         },
         "development": {
-          "tsConfig": "libs/ng-async-config/tsconfig.lib.json"
+          "tsConfig": "libs/ng-remote-config/tsconfig.lib.json"
         }
       },
       "defaultConfiguration": "production"
@@ -26,7 +26,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/ng-async-config/jest.config.ts"
+        "jestConfig": "libs/ng-remote-config/jest.config.ts"
       }
     },
     "lint": {

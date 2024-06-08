@@ -1,5 +1,5 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { setRemoteConfig } from '@jontze/ng-async-config';
+import { setRemoteConfig } from '@jontze/ng-remote-config';
 import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
 
