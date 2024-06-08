@@ -1,27 +1,27 @@
 {
-  "name": "ng-async-config-example",
+  "name": "ng-remote-config-example",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "prefix": "app",
-  "sourceRoot": "apps/ng-async-config-example/src",
+  "sourceRoot": "apps/ng-remote-config-example/src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/ng-async-config-example",
-        "index": "apps/ng-async-config-example/src/index.html",
-        "browser": "apps/ng-async-config-example/src/main.ts",
+        "outputPath": "dist/apps/ng-remote-config-example",
+        "index": "apps/ng-remote-config-example/src/index.html",
+        "browser": "apps/ng-remote-config-example/src/main.ts",
         "polyfills": ["zone.js"],
-        "tsConfig": "apps/ng-async-config-example/tsconfig.app.json",
+        "tsConfig": "apps/ng-remote-config-example/tsconfig.app.json",
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/ng-async-config-example/public"
+            "input": "apps/ng-remote-config-example/public"
           }
         ],
-        "styles": ["apps/ng-async-config-example/src/styles.css"],
+        "styles": ["apps/ng-remote-config-example/src/styles.css"],
         "scripts": []
       },
       "configurations": {
@@ -52,10 +52,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "ng-async-config-example:build:production"
+          "buildTarget": "ng-remote-config-example:build:production"
         },
         "development": {
-          "buildTarget": "ng-async-config-example:build:development"
+          "buildTarget": "ng-remote-config-example:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -63,7 +63,7 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "buildTarget": "ng-async-config-example:build"
+        "buildTarget": "ng-remote-config-example:build"
       }
     },
     "lint": {
@@ -73,7 +73,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/ng-async-config-example/jest.config.ts"
+        "jestConfig": "apps/ng-remote-config-example/jest.config.ts"
       }
     }
   }
