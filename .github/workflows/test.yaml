@@ -1,6 +1,10 @@
 name: Test
 on:
   workflow_call:
+    outputs:
+      has-changes:
+        description: If the distribution are affected from changes
+        value: ${{ jobs.build.outputs.uploaded-artifact }}
 
 env:
   MAIN_BRANCH_NAME: 'main'
@@ -76,6 +80,8 @@ jobs:
       - test
       - lint
       - format
+    outputs:
+      uploaded-artifact: ${{ steps.artifact-upload.outputs.artifact-id != ''}}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -93,3 +99,10 @@ jobs:
         run: npm ci
       - name: Build
         run: npx nx affected -t build
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        id: artifact-upload
+        with:
+          if-no-files-found: warn
+          name: lib-artifact-${{ github.sha }}
+          path: dist/libs/ng-remote-config
