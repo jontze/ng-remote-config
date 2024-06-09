@@ -1,5 +1,5 @@
 {
-  "name": "@ng-async-config/ng-remote-config",
+  "name": "@jontze/ng-remote-config",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/core": "^18.0.0"
