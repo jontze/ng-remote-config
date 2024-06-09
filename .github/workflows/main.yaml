@@ -8,3 +8,19 @@ jobs:
   test:
     name: Test
     uses: ./.github/workflows/test.yaml
+
+  download_built:
+    name: Download Built
+    runs-on: ubuntu-latest
+    needs:
+      - test
+    if: needs.test.outputs.has-changes == 'true'
+    steps:
+      - name: Download Built
+        uses: actions/download-artifact@v4
+        with:
+          name: lib-artifact-${{ github.sha }}
+      - name: Sanity Check
+        run: |
+          ls -la
+          ls -la dist/libs/ng-remote-config
