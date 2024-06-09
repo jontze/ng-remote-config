@@ -16,6 +16,8 @@ jobs:
       - test
     if: needs.test.outputs.has-changes == 'true'
     environment: production
+    permissions:
+      contents: write # To creat the GH Release
     steps:
       - name: Download Built
         uses: actions/download-artifact@v4
@@ -30,3 +32,7 @@ jobs:
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Create GH Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
