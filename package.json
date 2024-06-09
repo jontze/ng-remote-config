@@ -4,6 +4,11 @@
   "license": "MIT",
   "scripts": {},
   "private": true,
+  "author": "Jontze",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jontze/ng-remote-config"
+  },
   "dependencies": {
     "@angular/animations": "~18.0.0",
     "@angular/common": "~18.0.0",

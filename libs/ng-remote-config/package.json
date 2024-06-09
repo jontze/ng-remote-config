@@ -1,6 +1,12 @@
 {
   "name": "@jontze/ng-remote-config",
   "version": "0.0.1",
+  "author": "Jontze",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jontze/ng-remote-config"
+  },
+  "license": "MIT",
   "peerDependencies": {
     "@angular/core": "^18.0.0"
   },
