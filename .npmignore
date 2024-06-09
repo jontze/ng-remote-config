@@ -1,0 +1,15 @@
+.github/
+.nx/
+.vscode/
+apps/
+libs/
+node_modules/
+tsconfig*.json
+.editorconfig
+.eslintignore
+.eslintrc.json
+.nvmrc
+.prettierrc
+jest.config.js
+jest.preset.js
+nx.json
