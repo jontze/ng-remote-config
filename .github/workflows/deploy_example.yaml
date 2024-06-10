@@ -1,0 +1,40 @@
+name: Deploy Example App
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+env:
+  MAIN_BRANCH_NAME: 'main'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: nrwl/nx-set-shas@v4
+        with:
+          main-branch-name: ${{ env.MAIN_BRANCH_NAME }}
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+      - name: Install Dependencies
+        run: npm ci
+      - name: Deploy
+        run: npx nx affected -t build
+      - name: Check if folder exists and set output
+        id: dist-check
+        run: echo "exists=$(test -d dist/apps/ng-remote-config-example && echo true || echo false)" >> $GITHUB_OUTPUT
+      - name: Deploy
+        if: steps.dist-check.outputs.exists == 'true'
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist/apps/ng-remote-config-example
