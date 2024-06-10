@@ -42,10 +42,10 @@ jobs:
         run: npm ci
       - name: Build (always)
         if: ${{ inputs.force }}
-        run: npx nx run-many --target=build --all --parallel
+        run: npx nx run ng-remote-config-example:build --baseHref=/ng-remote-config/
       - name: Build (if affected)
         if: ${{ inputs.force != true }}
-        run: npx nx affected -t build
+        run: npx nx affected -t build --baseHref=/ng-remote-config/
       - name: Check if folder exists and set output
         id: dist-check
         run: echo "exists=$(test -d dist/apps/ng-remote-config-example && echo true || echo false)" >> $GITHUB_OUTPUT
