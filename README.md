@@ -48,35 +48,35 @@ or any other Node.JS package manager.
 1. Fetch your Config and Set in the Store
 
 ```typescript
-import { bootstrapApplication } from "@angular/platform-browser";
-import { setRemoteConfig } from "@jontze/ng-remote-config";
+import { bootstrapApplication } from '@angular/platform-browser';
+import { setRemoteConfig } from '@jontze/ng-remote-config';
 
-import { appConfig } from "./app/app.config";
-import { AppComponent } from "./app/app.component";
+import { appConfig } from './app/app.config';
+import { AppComponent } from './app/app.component';
 
 Promise.all([
-  fetch("/assets/config.json").then((res) => res.json())
+  fetch('/assets/config.json')
+    .then((res) => res.json())
     .then((config) => setRemoteConfig(config)),
-  fetch("/assets/features.json").then((res) => res.json())
-    .then((features) => setRemoteConfig(features, "features")),
-]).then(() => bootstrapApplication(AppComponent, appConfig))
+  fetch('/assets/features.json')
+    .then((res) => res.json())
+    .then((features) => setRemoteConfig(features, 'features')),
+])
+  .then(() => bootstrapApplication(AppComponent, appConfig))
   .catch((err) => console.error(err));
 ```
 
 2. Provide the Configuration in DI
 
 ```typescript
-import { ApplicationConfig, provideZoneChangeDetection } from "@angular/core";
-import { provideRouter } from "@angular/router";
-import { provideConfig } from "@jontze/ng-remote-config";
+import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { provideConfig } from '@jontze/ng-remote-config';
 
-import { appRoutes } from "./app.routes";
+import { appRoutes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideRouter(appRoutes),
-    provideConfig(),
-  ],
+  providers: [provideRouter(appRoutes), provideConfig()],
 };
 ```
 
@@ -94,22 +94,16 @@ interface FeatureFlags {
 
 @Component({
   standalone: true,
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrl: "./app.component.css",
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
   private readonly configService = inject(ConfigService);
 
   ngOnInit(): void {
-    console.debug(
-      "ConfigService:",
-      this.configService.getConfig<YourConfigType>(),
-    );
-    console.debug(
-      "ConfigService:",
-      this.configService.getConfig<FeatureFlags>("features"),
-    );
+    console.debug('ConfigService:', this.configService.getConfig<YourConfigType>());
+    console.debug('ConfigService:', this.configService.getConfig<FeatureFlags>('features'));
   }
 }
 ```
@@ -117,21 +111,18 @@ export class AppComponent implements OnInit {
 4. Outside of the DI Context: Access the Configuration via the Store
 
 ```typescript
-import { ApplicationConfig } from "@angular/core";
-import { provideRouter } from "@angular/router";
-import { getRemoteConfig } from "@jontze/ng-remote-config";
+import { ApplicationConfig } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { getRemoteConfig } from '@jontze/ng-remote-config';
 
-import { appRoutes } from "./app.routes";
+import { appRoutes } from './app.routes';
 
 interface ApiConfig {
   apiUrl: string;
 }
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideRouter(appRoutes),
-    provideSomeAPI({ url: getRemoteConfig<ApiConfig>().apiUrl }),
-  ],
+  providers: [provideRouter(appRoutes), provideSomeAPI({ url: getRemoteConfig<ApiConfig>().apiUrl })],
 };
 ```
 
