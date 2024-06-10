@@ -41,10 +41,10 @@ jobs:
       - name: Install Dependencies
         run: npm ci
       - name: Build (always)
-        if: inputs.force == 'true'
+        if: inputs.force
         run: npx nx run-many --target=build --all --parallel
       - name: Build (if affected)
-        if: inputs.force == 'false'
+        if: !inputs.force
         run: npx nx affected -t build
       - name: Check if folder exists and set output
         id: dist-check
