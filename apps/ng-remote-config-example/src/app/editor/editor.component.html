@@ -1,0 +1,21 @@
+<!-- Editor Content -->
+<div class="flex-grow flex flex-col dark:bg-gray-900 bg-white rounded-md">
+  <!-- Title Bar -->
+  <div
+    class="dark:bg-blue-600 bg-blue-500 flex items-center justify-between p-2 dark:text-white text-white rounded-md"
+  >
+    <div class="flex space-x-2">
+      <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+      <div class="w-3 h-3 bg-yellow-400 rounded-full"></div>
+      <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+    </div>
+    <div class="text-lg">JSON Viewer</div>
+    <div class="w-6 h-6"></div>
+    <!-- Placeholder to balance flex -->
+  </div>
+
+  <!-- JSON Content -->
+  <div class="p-4 overflow-auto">
+    <pre class="text-sm leading-relaxed"><ng-content></ng-content></pre>
+  </div>
+</div>

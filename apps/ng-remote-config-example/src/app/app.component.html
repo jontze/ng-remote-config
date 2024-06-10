@@ -1,1 +1,24 @@
-<app-nx-welcome></app-nx-welcome> <router-outlet></router-outlet>
+<div
+  class="flex flex-col items-center bg-slate-200 dark:bg-slate-700 h-svh gap-5 dark:text-white font-sans"
+>
+  <div
+    class="flex flex-row items-center justify-center bg-blue-500 dark:bg-blue-700 w-full p-3 rounded-sm shadow-md text-white"
+  >
+    <h1 class="text-3xl font-bold">NG-Remote-Config Example</h1>
+  </div>
+  <div class="flex flex-col items-center gap-2">
+    <h2 class="text-xl font-semibold">Config</h2>
+    <div>
+      <app-editor>{{ defaultConfig() | json }}</app-editor>
+    </div>
+  </div>
+
+  <div class="flex flex-col items-center gap-2">
+    <h2 class="text-xl font-semibold">Feature Flags</h2>
+    <div class="">
+      <app-editor class="">
+        {{ featureFlags() | json }}
+      </app-editor>
+    </div>
+  </div>
+</div>

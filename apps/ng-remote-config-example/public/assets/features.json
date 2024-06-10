@@ -1,3 +1,4 @@
 {
-  "isFeatureEnabled": true
+  "isFeatureEnabled": true,
+  "isAnotherFeatureEnabled": false
 }

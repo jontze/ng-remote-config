@@ -1,22 +1,22 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { Component, inject, signal } from '@angular/core';
 import { ConfigService } from '@jontze/ng-remote-config';
+import { DefaultConfig, FeaturesConfig } from './config';
+import { JsonPipe } from '@angular/common';
+
+import { EditorComponent } from './editor/editor.component';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule],
+  imports: [JsonPipe, EditorComponent],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit {
-  title = 'ng-async-config';
-
+export class AppComponent {
   private readonly configService = inject(ConfigService);
 
-  ngOnInit(): void {
-    console.debug('ConfigService:', this.configService.getConfig());
-    console.debug('ConfigService:', this.configService.getConfig('features'));
-  }
+  defaultConfig = signal(this.configService.getConfig<DefaultConfig>());
+  featureFlags = signal(
+    this.configService.getConfig<FeaturesConfig>('features')
+  );
 }
