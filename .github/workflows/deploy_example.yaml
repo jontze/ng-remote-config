@@ -53,4 +53,4 @@ jobs:
         if: steps.dist-check.outputs.exists == 'true'
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist/apps/ng-remote-config-example
+          folder: dist/apps/ng-remote-config-example/browser
