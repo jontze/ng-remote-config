@@ -13,4 +13,6 @@ jobs:
     name: Deploy
     needs:
       - test
+    permissions:
+      contents: write
     uses: ./.github/workflows/deploy_example.yaml
