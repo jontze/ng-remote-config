@@ -7,7 +7,9 @@
   - [Overview](#overview)
   - [Features](#features)
   - [Installation](#installation)
+  - [Angular Version Matrix](#angular-version-matrix)
   - [Usage](#usage)
+    - [Example](#example)
   - [Why?](#why)
     - [Addressing Angular’s Limitation with Async Providers](#addressing-angulars-limitation-with-async-providers)
     - [Drawbacks to Consider](#drawbacks-to-consider)
@@ -43,16 +45,35 @@ yarn add @jontze/ng-remote-config
 
 or any other Node.JS package manager.
 
+## Angular Version Matrix
+
+| Angular Version | ng-remote-config Version |
+| --------------- | ------------------------ |
+| ^18.0.0         | ^1.0.0                   |
+
 ## Usage
 
 1. Fetch your Config and Set in the Store
 
-```typescript
-import { bootstrapApplication } from '@angular/platform-browser';
-import { setRemoteConfig } from '@jontze/ng-remote-config';
+Move your angular app bootstrap code to a separate file. Here it's called
+`bootstrap.ts`.
 
+```typescript
+// bootstrap.ts
+import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
+
+bootstrapApplication(AppComponent, appConfig);
+```
+
+In your application entrypoint (usually `main.ts`), fetch the configuration
+files and then set them in the store. After that, import your application
+bootstrap.
+
+```typescript
+// main.ts
+import { setRemoteConfig } from '@jontze/ng-remote-config';
 
 Promise.all([
   fetch('/assets/config.json')
@@ -62,7 +83,7 @@ Promise.all([
     .then((res) => res.json())
     .then((features) => setRemoteConfig(features, 'features')),
 ])
-  .then(() => bootstrapApplication(AppComponent, appConfig))
+  .then(() => import('./bootstrap'))
   .catch((err) => console.error(err));
 ```
 
@@ -125,6 +146,12 @@ export const appConfig: ApplicationConfig = {
   providers: [provideRouter(appRoutes), provideSomeAPI({ url: getRemoteConfig<ApiConfig>().apiUrl })],
 };
 ```
+
+### Example
+
+You can take a look at the
+[ng-remote-config-example](./apps/ng-remote-config-example/) application for a
+better understanding.
 
 ## Why?
 
