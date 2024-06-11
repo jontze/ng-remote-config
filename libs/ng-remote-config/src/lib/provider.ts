@@ -22,7 +22,7 @@ export const provideTestingConfig = (
       configMap.set(name, content);
       return configMap;
     },
-    new Map().set('default', defaultConfig ?? { environment: 'test' })
+    new Map().set('default', defaultConfig ?? {})
   );
   return makeEnvironmentProviders([
     {
