@@ -1,7 +1,4 @@
-import { bootstrapApplication } from '@angular/platform-browser';
 import { setRemoteConfig } from '@jontze/ng-remote-config';
-import { appConfig } from './app/app.config';
-import { AppComponent } from './app/app.component';
 
 Promise.all([
   fetch('assets/config.json')
@@ -11,5 +8,5 @@ Promise.all([
     res.json().then((features) => setRemoteConfig(features, 'features'))
   ),
 ])
-  .then(() => bootstrapApplication(AppComponent, appConfig))
+  .then(() => import('./bootstrap'))
   .catch((err) => console.error(err));

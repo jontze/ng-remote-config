@@ -1,5 +1,10 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideConfig } from '@jontze/ng-remote-config';
+import { getRemoteConfig, provideConfig } from '@jontze/ng-remote-config';
+
+import { DefaultConfig, FeaturesConfig } from './config';
+
+console.debug('Default Config: ', getRemoteConfig<DefaultConfig>());
+console.debug('Feature Flags: ', getRemoteConfig<FeaturesConfig>());
 
 export const appConfig: ApplicationConfig = {
   providers: [
