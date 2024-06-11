@@ -16,3 +16,5 @@ jobs:
     permissions:
       contents: write
     uses: ./.github/workflows/deploy_example.yaml
+    with:
+      force: true
