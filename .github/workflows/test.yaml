@@ -31,6 +31,29 @@ jobs:
       - name: Test
         run: npx nx affected -t test
 
+  e2e:
+    runs-on: ubuntu-latest
+    name: E2E
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: nrwl/nx-set-shas@v4
+        with:
+          main-branch-name: ${{ env.MAIN_BRANCH_NAME }}
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+      - name: Install Dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: E2E
+        run: npx nx affected -t e2e
+
   lint:
     runs-on: ubuntu-latest
     name: Lint
@@ -80,6 +103,7 @@ jobs:
       - test
       - lint
       - format
+      - e2e
     outputs:
       uploaded-artifact: ${{ steps.artifact-upload.outputs.artifact-id != ''}}
     steps:
