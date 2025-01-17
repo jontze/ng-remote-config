@@ -13,21 +13,23 @@
   - [Why?](#why)
     - [Addressing Angular’s Limitation with Async Providers](#addressing-angulars-limitation-with-async-providers)
     - [Drawbacks to Consider](#drawbacks-to-consider)
+  - [Alternatives](#alternatives)
   - [Contribution](#contribution)
   - [License](#license)
 
 ## Overview
 
 This Angular library provides a simple way to manage remote configuration
-settings in an Angular application. The library allows you to store, retrieve,
-and inject configuration objects in a structured and type-safe manner.
+settings in an Angular application. The library allows you to store a fetched
+config **before bootstrapping** your Angular application and then provides it
+into the DI context in a structured and type-safe manner.
 
 ## Features
 
 - Easy to set and retrieve configurations.
 - Injectable service for accessing configurations via Angular's dependency
   injection system.
-- Support to access configurations outside of the DI context.
+- Support to access configurations outside of the DI context (e.g before bootstrap, ...).
 
 ## Installation
 
@@ -49,6 +51,7 @@ or any other Node.JS package manager.
 
 | Angular Version | ng-remote-config Version |
 | --------------- | ------------------------ |
+| ^19.0.0         | ^2.0.0                   |
 | ^18.0.0         | ^1.0.0                   |
 
 ## Usage
@@ -194,6 +197,18 @@ before application bootstrap. However, this has several drawbacks.
    reliability of the configuration service. Network issues or service outages
    can impact your application's ability to retrieve configurations, so you
    should consider fallback mechanisms or local caching.
+
+## Alternatives
+
+If you only need the Configuration in the DI context you can also use the
+[app initializer provider](https://angular.dev/api/core/provideAppInitializer?tab=usage-notes)
+to fetch the configuration during angular is bootstrapped.
+
+The provider accepts a promise or an observable as return type that blocks startup
+until the promise is resolved or the observable completes.
+
+However, this might not be the best solution if you need to access the config
+earlier in the application lifecycle.
 
 ## Contribution
 
