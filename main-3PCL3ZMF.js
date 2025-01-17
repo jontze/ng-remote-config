@@ -1,1 +1,0 @@
-import{J as t}from"./chunk-VDGI7CPG.js";Promise.all([fetch("assets/config.json").then(e=>e.json()).then(e=>t(e)),fetch("assets/features.json").then(e=>e.json().then(s=>t(s,"features")))]).then(()=>import("./chunk-JGT6E7XW.js")).catch(e=>console.error(e));

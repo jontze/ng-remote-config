@@ -1,0 +1,1 @@
+import{I as t}from"./chunk-2DZIDYP5.js";Promise.all([fetch("assets/config.json").then(e=>e.json()).then(e=>t(e)),fetch("assets/features.json").then(e=>e.json().then(s=>t(s,"features")))]).then(()=>import("./chunk-6NCNKNVZ.js")).catch(e=>console.error(e));
