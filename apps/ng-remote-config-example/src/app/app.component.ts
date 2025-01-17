@@ -6,7 +6,6 @@ import { JsonPipe } from '@angular/common';
 import { EditorComponent } from './editor/editor.component';
 
 @Component({
-  standalone: true,
   imports: [JsonPipe, EditorComponent],
   selector: 'app-root',
   templateUrl: './app.component.html',
