@@ -1,5 +1,7 @@
 # Angular Remote Configuration Library
 
+![NPM License](https://img.shields.io/npm/l/%40jontze%2Fng-remote-config) ![NPM Version](https://img.shields.io/npm/v/%40jontze%2Fng-remote-config)
+
 ## ToC
 
 - [Angular Remote Configuration Library](#angular-remote-configuration-library)
